@@ -1,0 +1,19 @@
+body
+{
+    background-image: url("https://img.freepik.com/free-photo/abstract-digital-grid-black-background_53876-97647.jpg;");
+    background-size: cover;
+}
+
+.title
+{
+    background-color:burlywood;
+    bottom: 12px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.in
+{
+    float:right;
+    height:40px;
+    top:10px;
+}
