@@ -1,5 +1,9 @@
 
 /*created by prashant shukla */
+// Updated by Tom & George Binoy
+
+var userReady = false;
+var userinputs = false;
 
 var paddle2 =10,paddle1=10;
 
@@ -31,7 +35,7 @@ function setup(){
 
 
 function draw(){
-
+if(userReady === true){
  background(0); 
 
  fill("black");
@@ -69,8 +73,38 @@ function draw(){
    
    //function move call which in very important
     move();
+}else{
+  background(0);
+  fill("white");
+  stroke("blue");
+  rect(680,0,20,700);
+  text("Get Ready!",width/2,height/2);
+  textSize(25)
+}
 }
 
+function start(){
+  if(userinputs === false){
+  userReady = true;
+  document.getElementById("start").innerHTML = "Restart";
+  userinputs = true;
+  }else{
+    userinputs = false;
+    userReady = false;
+    document.getElementById("start").innerHTML = "Start";
+    var paddle2 =10,paddle1=10;
+
+    var paddle1X = 10,paddle1Height = 110;
+    var paddle2Y = 685,paddle2Height = 70;
+
+    var score1 = 0, score2 =0;
+    var paddle1Y;
+
+    var  playerscore =0;
+    var audio1;
+    var pcscore =0;
+  }
+}
 
 
 //function reset when ball does notcame in the contact of padde

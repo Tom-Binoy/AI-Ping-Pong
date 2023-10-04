@@ -15,8 +15,11 @@
 
     </head>
       <body background="background1.jpg" >
-        <h1 class="title">AI PING PONG </h1>
-        <button class="help" data-toggle="modal" data-target="#myModal">Help</button>
+        <div class="header"></div><h1 class="title">AI PING PONG <button id="start" class="start" 
+            onclick="start(thisid)">Go!<button class="help" data-toggle="modal" data-target="#myModal">Help</button>
+        </button></h1>
+        
+        </div>
         <div class="can" id="canvas">
 
         <!-- creat a boostrap modal for instructions-->
@@ -46,15 +49,6 @@
         </div>
 
         <script src="main.js"></script>
-        <script>
-// Log message for HTML loading
-console.log("HTML loaded");
-
-// Function to be executed when the page is loaded
-window.onload = function() {
-    // Log message for page load
-    console.log("Page loaded");
-};
-        </script>
+        <div class="footer">By Tom & George Binoy</div>
     </body>
 </html>
