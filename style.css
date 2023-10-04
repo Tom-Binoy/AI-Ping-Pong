@@ -1,19 +1,34 @@
-body
-{
-    background-image: url("https://img.freepik.com/free-photo/abstract-digital-grid-black-background_53876-97647.jpg;");
+/* Style for the body */
+body {
     background-size: cover;
+    background-position: center;
 }
 
-.title
-{
-    background-color:burlywood;
-    bottom: 12px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+/* Style for the title */
+.title {
+    background-color: yellow;
+    left: 0;
+    margin: 0;
 }
 
-.in
-{
-    float:right;
-    height:40px;
-    top:10px;
+/* Style for the Help button */
+.help {
+    color: rgb(0, 195, 255);
+    font-size: 30px;
+    right: 0;
+    width: 100px;
+    position: fixed;
+}
+
+/* Style for the canvas */
+canvas {
+    border: 5px solid white;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px white;
+}
+
+/* Style for the video (you can adjust this as needed) */
+video {
+    display: none;
+    border: 2px solid rgb(52, 236, 15);
 }
