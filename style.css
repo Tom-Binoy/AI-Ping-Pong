@@ -19,9 +19,9 @@ body {
 }
 /* Style for the title */
 .title {
-    float: left;
     background-color: yellow;
     left: 0;
+    width: 100%;
     margin: 0;
     font-family: Georgia, 'Times New Roman', Times, serif;
     display: inline-block;
@@ -38,14 +38,15 @@ body {
 
 /* Style for the canvas */
 canvas {
-    float: auto;
+    float: left;
+    left: 0;
     border: 2px solid white;
     border-radius: 20px;
 }
 
 /* Style for the video (you can adjust this as needed) */
 video {
-    float: left;
+    float: right;
     display: none;
     border: 2px solid rgb(52, 236, 15);
 }

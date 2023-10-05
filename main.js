@@ -5,6 +5,9 @@
 var userReady = false;
 var userinputs = false;
 
+var x = 0;
+var y = 0;
+
 var paddle2 =10,paddle1=10;
 
 var paddle1X = 10,paddle1Height = 110;
@@ -25,16 +28,41 @@ var ball = {
     dy:3
 }
 
-function setup(){
-  var canvas =  createCanvas(700,600);
-  canvas.parent("#canvas")
-
-  var video = createCapture(VIDEO);
-  video.size(700,600)
+function preload(){
+  missed = loadSound("missed.wav");
+  point = loadSound("ball_touch_paddle.wav");
 }
 
+function setup(){
+  var canvas =  createCanvas(600,500);
+  canvas.parent("#canvas")
+
+  posenet = ml5.poseNet(video,modelLoaded)
+  posenet.on('poses',gotPoses)
+
+  var video = createCapture(VIDEO);
+  video.size(600,500)
+}
+
+function modelLoaded(){
+  consol.log("Model Loaded")
+}
+
+function gotPoses(result){
+  if(result !== ""){
+    if(userReady === true){
+      console.log(result);
+    
+      wrist = result[0].pose.rightWrist;
+      x = wrist.x;
+      y = wrist.y;
+    }
+  }
+}
 
 function draw(){
+if(y !== 0 & x !== 0)userReady=true;
+
 if(userReady === true){
  background(0); 
 
@@ -53,7 +81,7 @@ if(userReady === true){
    fill(250,0,0);
     stroke(0,0,250);
     strokeWeight(0.5);
-   paddle1Y = mouseY; 
+   paddle1Y = y; 
    rect(paddle1X,paddle1Y,paddle1,paddle1Height,100);
    
    
@@ -79,19 +107,16 @@ if(userReady === true){
   stroke("blue");
   rect(680,0,20,700);
   text("Get Ready!",width/2,height/2);
-  textSize(25)
+  textSize(50)
 }
 }
 
-function start(){
-  if(userinputs === false){
-  userReady = true;
-  document.getElementById("start").innerHTML = "Restart";
-  userinputs = true;
-  }else{
-    userinputs = false;
+function restart(){
     userReady = false;
-    document.getElementById("start").innerHTML = "Start";
+
+    x = 0;
+    y = 0;
+
     var paddle2 =10,paddle1=10;
 
     var paddle1X = 10,paddle1Height = 110;
@@ -103,7 +128,10 @@ function start(){
     var  playerscore =0;
     var audio1;
     var pcscore =0;
-  }
+
+    setTimeout(() => {
+      userReady = true;
+    }, 10000);
 }
 
 
@@ -113,6 +141,7 @@ function reset(){
    ball.y = height/2+100;
    ball.dx=3;
    ball.dy =3;
+   missed.play()
    
 }
 
@@ -156,9 +185,11 @@ function move(){
   if (ball.y >= paddle1Y&& ball.y <= paddle1Y + paddle1Height) {
     ball.dx = -ball.dx+0.5;
     playerscore++;
+    point.play()
   }
   else{
     pcscore++;
+    point.play()
     reset();
     navigator.vibrate(100);
   }
@@ -171,7 +202,7 @@ if(pcscore ==4){
     stroke("white");
     textSize(25)
     text("Game Over!☹☹",width/2,height/2);
-    text("Reload The Page!",width/2,height/2+30)
+    text("Reload Click Reset!",width/2,height/2+30)
     noLoop();
     pcscore = 0;
 }
